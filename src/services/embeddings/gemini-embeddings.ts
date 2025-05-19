@@ -4,7 +4,7 @@ import * as genai from '@google/generative-ai'; // Using namespace import
 // especially the API_KEY. Timestamps and user should ideally be dynamic.
 
 const CURRENT_USER = 'Vishnusan58'; // Hardcoded
-const API_KEY = 'AIzaSyDr6KjoDsPwQiAdDN-8CdzTTbIk8rIIZRg'; // Hardcoded API Key - MAJOR SECURITY RISK
+const API_KEY = 'process.env.GEMINI_API_KEY || API_KEY'; // Hardcoded API Key - MAJOR SECURITY RISK
 const MODEL_NAME = 'gemini-embedding-exp-03-07'; // This model name might be outdated or an experimental one.
 // Official models are like 'embedding-001' or 'text-embedding-004'.
 // Verify the correct model name.
@@ -16,7 +16,7 @@ export class GeminiEmbeddingService {
     private constructor() {
         // It's safer to get the API key from environment variables
         const apiKey = process.env.GEMINI_API_KEY || API_KEY; // Fallback, but ideally only from env
-        if (!apiKey || apiKey === 'AIzaSyDr6KjoDsPwQiAdDN-8CdzTTbIk8rIIZRg') { // Check against your hardcoded default
+        if (!apiKey || apiKey === 'process.env.GEMINI_API_KEY || API_KEY') { // Check against your hardcoded default
             console.error("GEMINI_API_KEY is not configured or is using a placeholder. Please set it in your environment variables.");
             // Optionally throw an error here if the API key is critical for instantiation
         }
